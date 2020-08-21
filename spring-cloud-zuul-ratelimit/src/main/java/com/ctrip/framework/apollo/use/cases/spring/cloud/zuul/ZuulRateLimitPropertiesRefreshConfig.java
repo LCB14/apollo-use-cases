@@ -17,21 +17,21 @@ import org.springframework.stereotype.Component;
 @ConditionalOnProperty(prefix = PREFIX, name = "enabled", havingValue = "true")
 public class ZuulRateLimitPropertiesRefreshConfig implements ApplicationContextAware {
 
-  private static final Logger logger = LoggerFactory.getLogger(ZuulRateLimitPropertiesRefreshConfig.class);
+    private static final Logger logger = LoggerFactory.getLogger(ZuulRateLimitPropertiesRefreshConfig.class);
 
-  private ApplicationContext applicationContext;
+    private ApplicationContext applicationContext;
 
-  @ApolloConfigChangeListener(interestedKeyPrefixes = PREFIX)
-  public void onChange(ConfigChangeEvent changeEvent) {
-    logger.info("Refreshing Zuul rateLimit Properties");
+    @ApolloConfigChangeListener(interestedKeyPrefixes = PREFIX)
+    public void onChange(ConfigChangeEvent changeEvent) {
+        logger.info("Refreshing Zuul rateLimit Properties");
 
-    this.applicationContext.publishEvent(new EnvironmentChangeEvent(changeEvent.changedKeys()));
+        this.applicationContext.publishEvent(new EnvironmentChangeEvent(changeEvent.changedKeys()));
 
-    logger.info("Zuul rateLimit Properties refreshed!");
-  }
+        logger.info("Zuul rateLimit Properties refreshed!");
+    }
 
-  @Override
-  public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-    this.applicationContext = applicationContext;
-  }
+    @Override
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        this.applicationContext = applicationContext;
+    }
 }

@@ -1,13 +1,16 @@
 package com.ctrip.framework.apollo.use.cases.spring.boot.encrypt;
 
 import com.ctrip.framework.apollo.spring.annotation.EnableApolloConfig;
+
 import java.util.concurrent.TimeUnit;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import javax.annotation.PostConstruct;
+
 import org.springframework.context.EnvironmentAware;
 import org.springframework.core.env.Environment;
 

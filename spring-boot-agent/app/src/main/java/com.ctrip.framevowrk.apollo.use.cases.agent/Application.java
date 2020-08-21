@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
  * @date: 2019/5/8
  */
 @SpringBootApplication
-public class Application implements CommandLineRunner{
+public class Application implements CommandLineRunner {
 
 
     @Value("${test.input:777}")
@@ -20,12 +20,12 @@ public class Application implements CommandLineRunner{
 
     @Override
     public void run(String... args) {
-        while (true){
+        while (true) {
             System.err.println(input);
             try {
                 TimeUnit.SECONDS.sleep(2);
-            }catch (InterruptedException e){
-               e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         }
 

@@ -1,6 +1,7 @@
 package com.ctrip.framework.apollo.use.cases.dynamic.datasource.util;
 
 import java.util.function.Consumer;
+
 import org.springframework.beans.BeansException;
 import org.springframework.beans.PropertyEditorRegistry;
 import org.springframework.boot.context.properties.bind.BindHandler;
@@ -23,36 +24,36 @@ import org.springframework.stereotype.Component;
 @Component
 public class CustomizedConfigurationPropertiesBinder implements ApplicationContextAware {
 
-  private ConfigurableApplicationContext applicationContext;
-  private PropertySources propertySources;
-  private Binder binder;
+    private ConfigurableApplicationContext applicationContext;
+    private PropertySources propertySources;
+    private Binder binder;
 
-  public void bind(String configPrefix, Bindable<?> bean) {
-    BindHandler handler = new IgnoreTopLevelConverterNotFoundBindHandler();
-    this.binder.bind(configPrefix, bean, handler);
-  }
+    public void bind(String configPrefix, Bindable<?> bean) {
+        BindHandler handler = new IgnoreTopLevelConverterNotFoundBindHandler();
+        this.binder.bind(configPrefix, bean, handler);
+    }
 
-  @Override
-  public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-    this.applicationContext = (ConfigurableApplicationContext) applicationContext;
-    this.propertySources = this.applicationContext.getEnvironment().getPropertySources();
-    this.binder = new Binder(getConfigurationPropertySources(), getPropertySourcesPlaceholdersResolver(),
-        getConversionService(), getPropertyEditorInitializer());
-  }
+    @Override
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        this.applicationContext = (ConfigurableApplicationContext) applicationContext;
+        this.propertySources = this.applicationContext.getEnvironment().getPropertySources();
+        this.binder = new Binder(getConfigurationPropertySources(), getPropertySourcesPlaceholdersResolver(),
+                getConversionService(), getPropertyEditorInitializer());
+    }
 
-  private Iterable<ConfigurationPropertySource> getConfigurationPropertySources() {
-    return ConfigurationPropertySources.from(this.propertySources);
-  }
+    private Iterable<ConfigurationPropertySource> getConfigurationPropertySources() {
+        return ConfigurationPropertySources.from(this.propertySources);
+    }
 
-  private PropertySourcesPlaceholdersResolver getPropertySourcesPlaceholdersResolver() {
-    return new PropertySourcesPlaceholdersResolver(this.propertySources);
-  }
+    private PropertySourcesPlaceholdersResolver getPropertySourcesPlaceholdersResolver() {
+        return new PropertySourcesPlaceholdersResolver(this.propertySources);
+    }
 
-  private ConversionService getConversionService() {
-    return this.applicationContext.getBeanFactory().getConversionService();
-  }
+    private ConversionService getConversionService() {
+        return this.applicationContext.getBeanFactory().getConversionService();
+    }
 
-  private Consumer<PropertyEditorRegistry> getPropertyEditorInitializer() {
-    return this.applicationContext.getBeanFactory()::copyRegisteredEditorsTo;
-  }
+    private Consumer<PropertyEditorRegistry> getPropertyEditorInitializer() {
+        return this.applicationContext.getBeanFactory()::copyRegisteredEditorsTo;
+    }
 }

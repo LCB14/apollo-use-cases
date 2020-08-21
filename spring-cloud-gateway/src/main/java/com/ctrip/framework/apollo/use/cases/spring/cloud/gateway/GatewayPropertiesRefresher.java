@@ -25,7 +25,7 @@ import java.util.ArrayList;
  * @date 2019/5/175:24 PM
  */
 @Component
-public class GatewayPropertiesRefresher implements ApplicationContextAware,ApplicationEventPublisherAware {
+public class GatewayPropertiesRefresher implements ApplicationContextAware, ApplicationEventPublisherAware {
 
     private static final Logger logger = LoggerFactory.getLogger(GatewayPropertiesRefresher.class);
 

@@ -1,6 +1,7 @@
 package com.ctrip.framework.apollo.use.cases.spring.boot.logger;
 
 import java.util.concurrent.Executors;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -17,7 +18,7 @@ public class PrintLogger {
     private static Logger logger = LoggerFactory.getLogger(PrintLogger.class);
 
     @PostConstruct
-    public void printLogger() throws Exception{
+    public void printLogger() throws Exception {
         Executors.newSingleThreadExecutor().submit(() -> {
             while (true) {
                 logger.info("我是info级别日志");

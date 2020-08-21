@@ -14,16 +14,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class Application {
 
-  @Value("${server.port}")
-  private int port;
+    @Value("${server.port}")
+    private int port;
 
-  public static void main(String[] args) throws Exception {
-    new SpringApplicationBuilder(Application.class).run(args);
-  }
+    public static void main(String[] args) throws Exception {
+        new SpringApplicationBuilder(Application.class).run(args);
+    }
 
-  @GetMapping("/index")
-  public String index() {
-    return String.format("index %s",  port);
-  }
+    @GetMapping("/index")
+    public String index() {
+        return String.format("index %s", port);
+    }
 
 }

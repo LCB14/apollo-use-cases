@@ -7,11 +7,11 @@ import org.slf4j.LoggerFactory;
 
 @Service
 public class DemoServiceImpl implements DemoService {
-  private static final Logger LOGGER = LoggerFactory.getLogger(DemoServiceImpl.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(DemoServiceImpl.class);
 
-  @Override
-  public String sayHello(String name) {
-    LOGGER.info("Say hello to {}", name);
-    return "Hello " + name;
-  }
+    @Override
+    public String sayHello(String name) {
+        LOGGER.info("Say hello to {}", name);
+        return "Hello " + name;
+    }
 }
